@@ -1,0 +1,2 @@
+include ':app', ':textellipsis'
+rootProject.name='TextViewEllipsis'
