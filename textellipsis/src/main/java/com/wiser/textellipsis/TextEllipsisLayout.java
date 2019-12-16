@@ -44,7 +44,7 @@ public class TextEllipsisLayout extends ViewGroup {
 		int top = getPaddingTop();
 		int left = getPaddingLeft();
 		line.reMeasure();// 在摆放之前从新测量
-		line.layout(left, top);// 确定摆放的位置
+		line.layout(left);// 确定摆放的位置
 	}
 
 	@Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
@@ -97,11 +97,13 @@ public class TextEllipsisLayout extends ViewGroup {
 			}
 		}
 
-		void layout(int left, int top) {
+		void layout(int left) {
 			for (int i = 0; i < views.size(); i++) {
 				View childView = views.get(i);
 				MarginLayoutParams params = (MarginLayoutParams) childView.getLayoutParams();
-				childView.layout(left + params.leftMargin, top + params.topMargin, left + params.leftMargin + childView.getMeasuredWidth(), top + params.topMargin + childView.getMeasuredHeight());
+				// 居中显示
+				childView.layout(left + params.leftMargin, getMeasuredHeight() / 2 - childView.getMeasuredHeight() / 2, left + params.leftMargin + childView.getMeasuredWidth(),
+						getMeasuredHeight() / 2 + childView.getMeasuredHeight() / 2);
 				left = left + params.leftMargin + childView.getMeasuredWidth() + childView.getPaddingLeft();
 			}
 		}
@@ -119,7 +121,7 @@ public class TextEllipsisLayout extends ViewGroup {
 		}
 	}
 
-	//需要重写该方法 否则报(MarginLayoutParams) childView.getLayoutParams()转换异常
+	// 需要重写该方法 否则报(MarginLayoutParams) childView.getLayoutParams()转换异常
 	@Override public LayoutParams generateLayoutParams(AttributeSet attrs) {
 		return new MarginLayoutParams(getContext(), attrs);
 	}
