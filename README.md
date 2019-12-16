@@ -2,7 +2,8 @@
 文本+布局 文本超过1行展示省略号...
 
 ## 截图
-![images](https://github.com/Wiser-Wong/TextViewEllipsis/blob/master/images/text.png)
+![images](https://github.com/Wiser-Wong/TextViewEllipsis/blob/master/images/text1.png)
+![images](https://github.com/Wiser-Wong/TextViewEllipsis/blob/master/images/text2.png)
 
 ## 环境配置
     allprojects {
