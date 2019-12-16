@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginLeft="20dp"
-            android:text="东莨菪碱离开的健康东莨菪碱离开的健康东莨菪碱离开的健康东莨菪碱离开的健康" />
+            android:text="我要是省略号了我要是省略号了我要是省略号了我要是省略号了" />
 
         <ImageView
             android:layout_width="100dp"
