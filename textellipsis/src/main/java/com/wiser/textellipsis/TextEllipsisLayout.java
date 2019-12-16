@@ -101,7 +101,6 @@ public class TextEllipsisLayout extends ViewGroup {
 			for (int i = 0; i < views.size(); i++) {
 				View childView = views.get(i);
 				MarginLayoutParams params = (MarginLayoutParams) childView.getLayoutParams();
-				System.out.println("measuredWidth :" + childView.getMeasuredWidth());
 				childView.layout(left + params.leftMargin, top + params.topMargin, left + params.leftMargin + childView.getMeasuredWidth(), top + params.topMargin + childView.getMeasuredHeight());
 				left = left + params.leftMargin + childView.getMeasuredWidth() + childView.getPaddingLeft();
 			}
