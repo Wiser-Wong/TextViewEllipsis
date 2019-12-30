@@ -1,34 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:orientation="horizontal">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:text="占位置" />
 
     <com.wiser.textellipsis.TextEllipsisLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        app:tel_type="SINGLE">
 
-        <TextView
+        <androidx.appcompat.widget.AppCompatTextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="20dp"
-            android:text="我要是省略号了我要是省略号了我要是省略号了我要是省略号了" />
+            android:text="我是单行文本我是单行文本我是单行文本我是单行文本我是单行文本" />
 
-        <ImageView
-            android:layout_width="100dp"
+
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"
-            android:scaleType="fitXY"
-            android:src="@mipmap/ic_launcher" />
+            android:background="@color/colorPrimary"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="占位符" />
+        </LinearLayout>
+
     </com.wiser.textellipsis.TextEllipsisLayout>
+
+    <com.wiser.textellipsis.TextEllipsisLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:tel_type="SINGLE">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我是单行文本我是单行文本" />
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorAccent"
+            android:padding="15dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="占位符" />
+        </LinearLayout>
+
+    </com.wiser.textellipsis.TextEllipsisLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rlv"
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>
