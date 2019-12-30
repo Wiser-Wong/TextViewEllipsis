@@ -3,15 +3,13 @@ package com.wiser.textellipsis;
 import java.util.ArrayList;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
-
-import androidx.appcompat.widget.AppCompatTextView;
+import android.widget.TextView;
 
 /**
  * @author Wiser
@@ -20,41 +18,28 @@ import androidx.appcompat.widget.AppCompatTextView;
  */
 public class TextEllipsisLayout extends ViewGroup implements ViewTreeObserver.OnGlobalLayoutListener {
 
-	private int			lastWidth;
+	private int		lastWidth;
 
-	private LView		line;
-
-	private final int	SINGLE	= 1;		// 单独样式
-
-	private final int	LIST	= 2;		// 列表样式
-
-	private int			type	= SINGLE;
+	private LView	line;
 
 	public TextEllipsisLayout(Context context) {
 		super(context);
-		init(context, null);
+		init();
 	}
 
 	public TextEllipsisLayout(Context context, AttributeSet attrs) {
 		super(context, attrs);
-		init(context, attrs);
+		init();
 	}
 
 	public TextEllipsisLayout(Context context, AttributeSet attrs, int defStyleAttr) {
 		super(context, attrs, defStyleAttr);
-		init(context, attrs);
+		init();
 	}
 
-	private void init(Context context, AttributeSet attrs) {
+	private void init() {
 		line = new LView();
-
-		if (attrs == null) return;
-
-		TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.TextEllipsisLayout);
-		type = ta.getInt(R.styleable.TextEllipsisLayout_tel_type, type);
-		ta.recycle();
-
-		if (type == LIST) getViewTreeObserver().addOnGlobalLayoutListener(this);
+		getViewTreeObserver().addOnGlobalLayoutListener(this);
 	}
 
 	@Override protected void onLayout(boolean changed, int l, int t, int r, int b) {
@@ -76,7 +61,7 @@ public class TextEllipsisLayout extends ViewGroup implements ViewTreeObserver.On
 			int childWidth = childView.getMeasuredWidth();
 			line.addLineView(childView);
 			if (i == 0) {
-				if (!(childView instanceof AppCompatTextView)) {
+				if (!(childView instanceof TextView)) {
 					throw new InflateException("必须先添加的是TextView，并且只有两位子View");
 				}
 			} else {
@@ -105,7 +90,7 @@ public class TextEllipsisLayout extends ViewGroup implements ViewTreeObserver.On
 	}
 
 	@Override public void onGlobalLayout() {
-		if (type == LIST) setTextMaxWidth();
+		setTextMaxWidth();
 	}
 
 	class LView {
@@ -152,17 +137,12 @@ public class TextEllipsisLayout extends ViewGroup implements ViewTreeObserver.On
 	}
 
 	private void setTextMaxWidth() {
-		if (getChildCount() > 0 && getChildAt(0) instanceof AppCompatTextView) {
-			AppCompatTextView childView = ((AppCompatTextView) getChildAt(0));
+		if (getChildCount() > 0 && getChildAt(0) instanceof TextView) {
+			TextView childView = ((TextView) getChildAt(0));
 			MarginLayoutParams params = (MarginLayoutParams) childView.getLayoutParams();
 			childView.setMaxWidth(getMeasuredWidth() - getPaddingLeft() - getPaddingRight() - params.leftMargin - params.rightMargin - lastWidth);
 			childView.setEllipsize(TextUtils.TruncateAt.END);
 			childView.setMaxLines(1);
 		}
-	}
-
-	@Override protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-		super.onSizeChanged(w, h, oldw, oldh);
-		if (type == SINGLE) setTextMaxWidth();
 	}
 }
