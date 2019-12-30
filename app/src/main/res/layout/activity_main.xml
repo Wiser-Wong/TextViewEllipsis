@@ -25,6 +25,33 @@
                 android:layout_height="wrap_content"
                 android:text="占位符" />
         </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="占位符" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@color/colorPrimary"
+            android:layout_marginStart="5dp"
+            android:padding="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginRight="30dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="占位符" />
+        </LinearLayout>
 
     </com.wiser.textellipsis.TextEllipsisLayout>
 

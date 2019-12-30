@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.content.Context;
 import android.text.TextUtils;
 import android.util.AttributeSet;
-import android.view.InflateException;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewTreeObserver;
@@ -49,7 +48,6 @@ public class TextEllipsisLayout extends ViewGroup implements ViewTreeObserver.On
 	}
 
 	@Override protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-		if (getChildCount() > 2) throw new InflateException("必须先添加的是TextView，并且只有两位子View");
 		reset();
 		int height = 0;
 		int temp = 0;
@@ -62,7 +60,8 @@ public class TextEllipsisLayout extends ViewGroup implements ViewTreeObserver.On
 			line.addLineView(childView);
 			if (i == 0) {
 				if (!(childView instanceof TextView)) {
-					throw new InflateException("必须先添加的是TextView，并且只有两位子View");
+					MarginLayoutParams params = (MarginLayoutParams) childView.getLayoutParams();
+					lastWidth = lastWidth + childWidth + params.leftMargin + params.rightMargin + childView.getPaddingLeft() + childView.getPaddingRight();
 				}
 			} else {
 				MarginLayoutParams params = (MarginLayoutParams) childView.getLayoutParams();
@@ -114,7 +113,7 @@ public class TextEllipsisLayout extends ViewGroup implements ViewTreeObserver.On
 				// 居中显示
 				childView.layout(left + params.leftMargin, getMeasuredHeight() / 2 - childView.getMeasuredHeight() / 2, left + params.leftMargin + childView.getMeasuredWidth(),
 						getMeasuredHeight() / 2 + childView.getMeasuredHeight() / 2);
-				left = left + params.leftMargin + childView.getMeasuredWidth() + childView.getPaddingLeft();
+				left = left + params.leftMargin + childView.getMeasuredWidth();
 			}
 		}
 
