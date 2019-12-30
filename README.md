@@ -2,8 +2,7 @@
 文本+布局 文本超过1行展示省略号...
 
 ## 截图
-![images](https://github.com/Wiser-Wong/TextViewEllipsis/blob/master/images/text1.png)
-![images](https://github.com/Wiser-Wong/TextViewEllipsis/blob/master/images/text2.png)
+![images](https://github.com/Wiser-Wong/TextViewEllipsis/blob/master/images/text.jpg)
 
 ## 环境配置
     allprojects {
@@ -14,7 +13,7 @@
           }
 
         dependencies {
-              implementation 'com.github.Wiser-Wong:TextViewEllipsis:1.0.0'
+              implementation 'com.github.Wiser-Wong:TextViewEllipsis:1.1.0'
       }
 
 ## 使用控件
@@ -27,6 +26,7 @@
     <com.wiser.textellipsis.TextEllipsisLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:tel_type="SINGLE/LIST"
         android:layout_gravity="center">
 
         <TextView
